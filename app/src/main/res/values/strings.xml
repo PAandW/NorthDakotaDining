@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">North Dakota Dining</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="desserts"><u>Desserts</u></string>
+    <string name="grille_entree"><u>Grille Entree</u></string>
+    <string name="grille_sides"><u>Grille Sides</u></string>
+    <string name="options_entree"><u>Options Entree</u></string>
+    <string name="options_sides"><u>Options Sides</u></string>
+    <string name="classics_entree"><u>Classics Entree</u></string>
+    <string name="classics_sides"><u>Classics Sides</u></string>
+    <string name="global_entree"><u>Global Entree</u></string>
+    <string name="global_sides"><u>Global Sides</u></string>
+    <string name="soups"><u>Soups/Chowders</u></string>
+    <string name="breakfast_open"><u>Breakfast Open</u></string>
+    <string name="entrees"><u>Entrees</u></string>
+    <string name="starches"><u>Starches</u></string>
+    <string name="vegetables"><u>Vegetables</u></string>
+    <string name="woodfire"><u>Woodfire</u></string>
+</resources>

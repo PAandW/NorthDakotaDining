@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/charcoal"
+        android:text="@string/desserts"/>
+
+    <TextView
+        android:id="@+id/tv_desserts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/charcoal"
+        tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/charcoal"
+        android:text="@string/grille_entree"/>
+
+    <TextView
+        android:id="@+id/tv_grill_entree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/charcoal"
+        tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/charcoal"
+        android:text="@string/grille_sides"/>
+
+    <TextView
+        android:id="@+id/tv_grille_sides"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/charcoal"
+        tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/charcoal"
+        android:text="@string/options_entree"/>
+
+    <TextView
+        android:id="@+id/tv_options_entree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/charcoal"
+        tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/charcoal"
+        android:text="@string/options_sides"/>
+
+    <TextView
+        android:id="@+id/tv_options_sides"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/charcoal"
+        tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/charcoal"
+        android:text="@string/classics_entree"/>
+
+    <TextView
+        android:id="@+id/tv_classics_entree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/charcoal"
+        tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/charcoal"
+        android:text="@string/classics_sides"/>
+
+    <TextView
+        android:id="@+id/tv_classics_sides"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/charcoal"
+        tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/charcoal"
+        android:text="@string/global_entree"/>
+
+    <TextView
+        android:id="@+id/tv_global_entree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/charcoal"
+        tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/charcoal"
+        android:text="@string/global_sides"/>
+
+    <TextView
+        android:id="@+id/tv_global_sides"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/charcoal"
+        tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/charcoal"
+        android:text="@string/soups"/>
+
+    <TextView
+        android:id="@+id/tv_soups"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/charcoal"
+        tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/charcoal"
+        android:text="@string/breakfast_open"/>
+
+    <TextView
+        android:id="@+id/tv_open_breakfast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/charcoal"
+        tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
+
+</LinearLayout>

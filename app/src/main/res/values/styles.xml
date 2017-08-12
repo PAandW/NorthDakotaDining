@@ -1,0 +1,43 @@
+<resources>
+
+    <style name="None"/>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/charcoal</item>
+        <!--Status bar color-->
+        <item name="colorPrimaryDark">@color/charcoal</item>
+        <item name="colorAccent">@color/off_white</item>
+        <!--Ripple/selection color-->
+        <item name="colorControlHighlight">@color/off_white</item>
+        <item name="android:textColorPrimary">@color/charcoal</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <!--Sets the toolbar color-->
+        <item name="android:background">@color/charcoal</item>
+        <!--Sets the text color of the toolbar title-->
+        <item name="titleTextColor">@color/white</item>
+        <item name="android:theme">@style/AppTheme.Toolbar.Style</item>
+        <item name="popupTheme">@style/AppTheme.Toolbar.Popup</item>
+    </style>
+
+    <style name="AppTheme.Toolbar.Style" parent="None">
+        <!--Changes text color of menu text in toolbar-->
+        <item name="actionMenuTextColor">@color/white</item>
+        <!--Sets the overflow icon color-->
+        <item name="colorControlNormal">@color/white</item>
+        <!--Sets the color of the selector (ripple)-->
+        <item name="colorControlHighlight">@color/off_white</item>
+    </style>
+
+    <style name="AppTheme.Toolbar.Popup" parent="ThemeOverlay.AppCompat.Light">
+        <!--Sets the background of the popup-->
+        <item name="android:colorBackground">@color/white</item>
+        <!--Sets the text color-->
+        <item name="android:textColorPrimary">@color/charcoal</item>
+        <!--Sets the color of the selector (ripple)-->
+        <item name="colorControlHighlight">@color/off_white</item>
+    </style>
+
+</resources>
+
