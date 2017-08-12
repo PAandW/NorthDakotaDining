@@ -7,7 +7,7 @@ public class MenuPresenter {
         this.view = view;
     }
 
-    public void start(String date){
+    public void start(String date, String meal){
         //TODO show progress dialog and get data
     }
 }
