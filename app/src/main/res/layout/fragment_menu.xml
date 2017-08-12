@@ -76,7 +76,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@color/charcoal">
                 <TextView
@@ -87,6 +87,8 @@
                     android:textColor="@color/white"
                     android:text="Union Dining Center"/>
             </FrameLayout>
+
+            <include layout="@layout/view_union_menu"/>
 
         </LinearLayout>
 
