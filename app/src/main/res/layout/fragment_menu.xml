@@ -43,6 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:background="@color/charcoal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -58,7 +59,8 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@color/charcoal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -69,10 +71,13 @@
                     android:text="West Dining Center"/>
             </FrameLayout>
 
+            <include layout="@layout/view_west_menu"/>
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:background="@color/charcoal">
                 <TextView
                     android:layout_width="wrap_content"

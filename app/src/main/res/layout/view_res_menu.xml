@@ -11,11 +11,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textSize="16sp"
         android:textColor="@color/charcoal"
         android:text="@string/grille_entree"/>
 
     <TextView
-        android:id="@+id/tv_res_grill_entree"
+        android:id="@+id/tv_res_grille_entree"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -27,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textSize="16sp"
         android:textColor="@color/charcoal"
         android:text="@string/grille_sides"/>
 
@@ -43,6 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textSize="16sp"
         android:textColor="@color/charcoal"
         android:text="@string/classics_entree"/>
 
@@ -59,6 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textSize="16sp"
         android:textColor="@color/charcoal"
         android:text="@string/classics_sides"/>
 
@@ -75,6 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textSize="16sp"
         android:textColor="@color/charcoal"
         android:text="@string/global_entree"/>
 
@@ -91,6 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textSize="16sp"
         android:textColor="@color/charcoal"
         android:text="@string/global_sides"/>
 
@@ -107,6 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textSize="16sp"
         android:textColor="@color/charcoal"
         android:text="@string/options_entree"/>
 
@@ -123,6 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textSize="16sp"
         android:textColor="@color/charcoal"
         android:text="@string/options_sides"/>
 
@@ -139,6 +147,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textSize="16sp"
         android:textColor="@color/charcoal"
         android:text="@string/soups"/>
 
@@ -155,6 +164,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textSize="16sp"
         android:textColor="@color/charcoal"
         android:text="@string/breakfast_open"/>
 
@@ -177,6 +187,23 @@
 
     <TextView
         android:id="@+id/tv_res_desserts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/charcoal"
+        tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
+
+    <TextView
+        android:id="@+id/tv_res_other_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/charcoal"
+        android:text="@string/other"/>
+
+    <TextView
+        android:id="@+id/tv_res_other"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

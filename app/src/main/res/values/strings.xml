@@ -15,5 +15,6 @@
     <string name="entrees"><u>Entrees</u></string>
     <string name="starches"><u>Starches</u></string>
     <string name="vegetables"><u>Vegetables</u></string>
-    <string name="woodfire"><u>Woodfire</u></string>
+    <string name="woodstone"><u>Woodstone</u></string>
+    <string name="other"><u>Other</u></string>
 </resources>
