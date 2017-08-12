@@ -7,10 +7,10 @@
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
     android:orientation="vertical"
-    android:id="@+id/union_menu">
+    android:id="@+id/union_menu_container">
 
     <TextView
-        android:id="@+id/tv_union_entrees_label"
+        android:id="@+id/tv_entrees_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -19,7 +19,7 @@
         android:text="@string/entrees"/>
 
     <TextView
-        android:id="@+id/tv_union_entrees"
+        android:id="@+id/tv_entrees"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -27,7 +27,7 @@
         tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
 
     <TextView
-        android:id="@+id/tv_union_starches_label"
+        android:id="@+id/tv_starches_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -36,7 +36,7 @@
         android:text="@string/starches"/>
 
     <TextView
-        android:id="@+id/tv_union_starches"
+        android:id="@+id/tv_starches"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -44,7 +44,7 @@
         tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
 
     <TextView
-        android:id="@+id/tv_union_vegetables_label"
+        android:id="@+id/tv_vegetables_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -53,7 +53,7 @@
         android:text="@string/vegetables"/>
 
     <TextView
-        android:id="@+id/tv_union_vegetables"
+        android:id="@+id/tv_vegetables"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -61,7 +61,7 @@
         tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
 
     <TextView
-        android:id="@+id/tv_union_soups_label"
+        android:id="@+id/tv_soups_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -70,7 +70,7 @@
         android:text="@string/soups"/>
 
     <TextView
-        android:id="@+id/tv_union_soups"
+        android:id="@+id/tv_soups"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -78,7 +78,7 @@
         tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
 
     <TextView
-        android:id="@+id/tv_union_desserts_label"
+        android:id="@+id/tv_desserts_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -87,7 +87,7 @@
         android:text="@string/desserts"/>
 
     <TextView
-        android:id="@+id/tv_union_desserts"
+        android:id="@+id/tv_desserts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -95,7 +95,7 @@
         tools:text="Apple pie, French silk pie, Pumpking pie, Pecan pie"/>
 
     <TextView
-        android:id="@+id/tv_union_other_label"
+        android:id="@+id/tv_other_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -104,7 +104,7 @@
         android:text="@string/other"/>
 
     <TextView
-        android:id="@+id/tv_union_other"
+        android:id="@+id/tv_other"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

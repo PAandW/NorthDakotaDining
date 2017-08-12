@@ -1,9 +1,9 @@
 package com.paandw.apps.northdakotadining;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.paandw.apps.northdakotadining.menu.MenuFragment;
+import com.paandw.apps.northdakotadining.view.menu.MenuFragment;
 
 public class MenuActivity extends AppCompatActivity {
 

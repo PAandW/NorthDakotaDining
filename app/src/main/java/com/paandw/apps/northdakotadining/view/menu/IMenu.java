@@ -1,4 +1,4 @@
-package com.paandw.apps.northdakotadining.menu;
+package com.paandw.apps.northdakotadining.view.menu;
 
 import java.util.List;
 

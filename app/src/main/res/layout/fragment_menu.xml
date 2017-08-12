@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.paandw.apps.northdakotadining.menu.MenuFragment">
+    tools:context=".view.menu.MenuFragment">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -54,7 +54,10 @@
                     android:text="Residence Dining Center"/>
             </FrameLayout>
 
-            <include layout="@layout/view_res_menu"/>
+            <com.paandw.apps.northdakotadining.view.custom.ResMenuView
+                android:id="@+id/res_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -71,7 +74,10 @@
                     android:text="West Dining Center"/>
             </FrameLayout>
 
-            <include layout="@layout/view_west_menu"/>
+            <com.paandw.apps.northdakotadining.view.custom.WestMenuView
+                android:id="@+id/west_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -88,7 +94,10 @@
                     android:text="Union Dining Center"/>
             </FrameLayout>
 
-            <include layout="@layout/view_union_menu"/>
+            <com.paandw.apps.northdakotadining.view.custom.UnionMenuView
+                android:id="@+id/union_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

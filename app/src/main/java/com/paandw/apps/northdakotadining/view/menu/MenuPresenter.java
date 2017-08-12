@@ -1,4 +1,4 @@
-package com.paandw.apps.northdakotadining.menu;
+package com.paandw.apps.northdakotadining.view.menu;
 
 public class MenuPresenter {
     IMenu view;
@@ -7,7 +7,7 @@ public class MenuPresenter {
         this.view = view;
     }
 
-    public void start(){
+    public void start(String date){
         //TODO show progress dialog and get data
     }
 }
