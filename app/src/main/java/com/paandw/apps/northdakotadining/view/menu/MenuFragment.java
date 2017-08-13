@@ -17,8 +17,6 @@ import com.paandw.apps.northdakotadining.view.custom.ResMenuView;
 import com.paandw.apps.northdakotadining.view.custom.UnionMenuView;
 import com.paandw.apps.northdakotadining.view.custom.WestMenuView;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -84,12 +82,16 @@ public class MenuFragment extends Fragment implements IMenu{
     }
 
     @Override
-    public void setWestData(List<String> data) {
+    public void setWestData(SpannableStringBuilder entrees, SpannableStringBuilder woodstone,
+                            SpannableStringBuilder starches, SpannableStringBuilder vegetables,
+                            SpannableStringBuilder soups, SpannableStringBuilder desserts, SpannableStringBuilder other) {
 
     }
 
     @Override
-    public void setUnionData(List<String> data) {
+    public void setUnionData(SpannableStringBuilder entrees, SpannableStringBuilder starches,
+                             SpannableStringBuilder vegetables, SpannableStringBuilder soups,
+                             SpannableStringBuilder desserts, SpannableStringBuilder other) {
 
     }
 }
