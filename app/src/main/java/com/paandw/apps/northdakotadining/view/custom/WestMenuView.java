@@ -61,30 +61,79 @@ public class WestMenuView extends LinearLayout {
     }
 
     public void setEntrees(String entrees){
-        tvEntrees.setText(entrees);
-    }
-
-    public void setStarches(String starches){
-        tvStarches.setText(starches);
-    }
-
-    public void setVegetables(String vegetables){
-        tvVegetables.setText(vegetables);
-    }
-
-    public void setSoups(String soups){
-        tvSoups.setText(soups);
+        if(entrees != null) {
+            tvEntrees.setVisibility(View.VISIBLE);
+            tvEntreesLabel.setVisibility(View.VISIBLE);
+            tvEntrees.setText(entrees);
+        } else {
+            tvEntrees.setVisibility(View.INVISIBLE);
+            tvEntreesLabel.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void setWoodstone(String woodstone){
-        tvWoodstone.setText(woodstone);
+        if(woodstone != null) {
+            tvWoodstone.setVisibility(View.VISIBLE);
+            tvWoodstoneLabel.setVisibility(View.VISIBLE);
+            tvWoodstone.setText(woodstone);
+        } else {
+            tvWoodstone.setVisibility(View.INVISIBLE);
+            tvWoodstoneLabel.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setStarches(String starches){
+        if(starches != null) {
+            tvStarches.setVisibility(View.VISIBLE);
+            tvStarchesLabel.setVisibility(View.VISIBLE);
+            tvStarches.setText(starches);
+        } else {
+            tvStarches.setVisibility(View.INVISIBLE);
+            tvStarchesLabel.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setVegetables(String vegetables){
+        if(vegetables != null) {
+            tvVegetables.setVisibility(View.VISIBLE);
+            tvVegetablesLabel.setVisibility(View.VISIBLE);
+            tvVegetables.setText(vegetables);
+        } else {
+            tvVegetables.setVisibility(View.INVISIBLE);
+            tvVegetablesLabel.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setSoups(String soups){
+        if(soups != null) {
+            tvSoups.setVisibility(View.VISIBLE);
+            tvSoupsLabel.setVisibility(View.VISIBLE);
+            tvSoups.setText(soups);
+        } else {
+            tvSoups.setVisibility(View.INVISIBLE);
+            tvSoupsLabel.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void setDesserts(String desserts){
-        tvDesserts.setText(desserts);
+        if(desserts != null) {
+            tvDesserts.setVisibility(View.VISIBLE);
+            tvDessertsLabel.setVisibility(View.VISIBLE);
+            tvDesserts.setText(desserts);
+        } else {
+            tvDesserts.setVisibility(View.INVISIBLE);
+            tvDessertsLabel.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void setOther(String other){
-        tvOther.setText(other);
+        if(other != null) {
+            tvOther.setVisibility(View.VISIBLE);
+            tvOtherLabel.setVisibility(View.VISIBLE);
+            tvOther.setText(other);
+        } else {
+            tvOther.setVisibility(View.INVISIBLE);
+            tvOtherLabel.setVisibility(View.INVISIBLE);
+        }
     }
 }
