@@ -1,7 +1,11 @@
 package com.paandw.apps.northdakotadining.view.menu;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 
+import com.paandw.apps.northdakotadining.R;
 import com.paandw.apps.northdakotadining.util.FormatUtil;
 
 import java.io.BufferedReader;
@@ -13,12 +17,14 @@ import java.util.List;
 
 public class MenuPresenter {
     private IMenu view;
+    private Context context;
     private String meal;
     private List<String> unionEntrees, unionStarches, unionVegetables, unionSoups, unionDesserts, unionOther;
 
 
-    public MenuPresenter(IMenu view){
+    public MenuPresenter(IMenu view, Context context){
         this.view = view;
+        this.context = context;
     }
 
     public void start(String date, String meal){
@@ -100,6 +106,7 @@ public class MenuPresenter {
 
         private List<String> entrees, woodstone, starches, vegetables, soups, desserts, other;
         private List<String> entreesNutrition, woodstoneNutrition, starchesNutrition, vegetablesNutrition, soupsNutrition, dessertsNutrition, otherNutrition;
+        private SpannableStringBuilder entreesBuilder, woodstoneBuilder, starchesBuilder, vegetablesBuilder, soupsBuilder, dessertsBuilder, otherBuilder;
         private boolean isMeal, isEntree, isWoodstone, isStarches, isVegetables, isSoups, isDesserts, isOther;
         private String nutritionGraphicHandler;
 
@@ -120,6 +127,15 @@ public class MenuPresenter {
             soupsNutrition = new ArrayList<>();
             dessertsNutrition = new ArrayList<>();
             otherNutrition = new ArrayList<>();
+
+            entreesBuilder = new SpannableStringBuilder();
+            woodstoneBuilder = new SpannableStringBuilder();
+            starchesBuilder = new SpannableStringBuilder();
+            vegetablesBuilder = new SpannableStringBuilder();
+            soupsBuilder = new SpannableStringBuilder();
+            dessertsBuilder = new SpannableStringBuilder();
+            otherBuilder = new SpannableStringBuilder();
+
             super.onPreExecute();
         }
 
@@ -142,6 +158,8 @@ public class MenuPresenter {
                         getMenuData(line);
                     }
                 }
+
+
             } catch(IOException exception){
                 //Do nothing
             }
@@ -152,6 +170,7 @@ public class MenuPresenter {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+
         }
 
         private void setMealCategory(String line){
@@ -267,6 +286,12 @@ public class MenuPresenter {
                     nutritionGraphicHandler = "";
                 }
             }
+        }
+        private void mergeMealData(){
+            ImageSpan glutenImage = new ImageSpan(context, R.drawable.gluten);
+            ImageSpan nutsImage = new ImageSpan(context, R.drawable.nuts);
+            ImageSpan trnImage = new ImageSpan(context, R.drawable.trn);
+            ImageSpan veggieImage = new ImageSpan(context, R.drawable.veggie);
         }
     }
 }

@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 public class MenuFragment extends Fragment implements IMenu{
 
     private MaterialDialog dialog;
+    private MenuPresenter presenter;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -45,6 +46,7 @@ public class MenuFragment extends Fragment implements IMenu{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
         ButterKnife.bind(this, view);
+        presenter = new MenuPresenter(this, getContext());
         toolbar.setTitle("North Dakota Dining");
         return view;
     }
