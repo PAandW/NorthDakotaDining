@@ -10,15 +10,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.paandw.apps.northdakotadining.R;
 import com.paandw.apps.northdakotadining.view.custom.ResMenuView;
 import com.paandw.apps.northdakotadining.view.custom.UnionMenuView;
 import com.paandw.apps.northdakotadining.view.custom.WestMenuView;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MenuFragment extends Fragment {
+public class MenuFragment extends Fragment implements IMenu{
+
+    private MaterialDialog dialog;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -48,5 +53,38 @@ public class MenuFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void showProgress(String message) {
+        if(dialog != null){
+            dialog.setContent(message);
+        } else {
+            dialog = new MaterialDialog.Builder(getActivity())
+                    .content(message)
+                    .progress(true, 0)
+                    .build();
+        }
+        dialog.show();
+    }
+
+    @Override
+    public void hideProgress() {
+        dialog.dismiss();
+    }
+
+    @Override
+    public void setResData(List<String> data) {
+
+    }
+
+    @Override
+    public void setWestData(List<String> data) {
+
+    }
+
+    @Override
+    public void setUnionData(List<String> data) {
+
     }
 }
