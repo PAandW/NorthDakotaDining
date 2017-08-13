@@ -2,6 +2,7 @@ package com.paandw.apps.northdakotadining.view.custom;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.text.SpannableStringBuilder;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +77,7 @@ public class ResMenuView extends LinearLayout{
         ButterKnife.bind(this, view);
     }
 
-    public void setGrilleEntree(String entree){
+    public void setGrilleEntree(SpannableStringBuilder entree){
         if(entree != null) {
             tvGrilleEntree.setVisibility(View.VISIBLE);
             tvGrilleEntreeLabel.setVisibility(View.VISIBLE);
@@ -87,7 +88,7 @@ public class ResMenuView extends LinearLayout{
         }
     }
 
-    public void setGrilleSides(String sides){
+    public void setGrilleSides(SpannableStringBuilder sides){
         if(sides != null) {
             tvGrilleSides.setVisibility(View.VISIBLE);
             tvGrilleSidesLabel.setVisibility(View.VISIBLE);
@@ -98,7 +99,7 @@ public class ResMenuView extends LinearLayout{
         }
     }
 
-    public void setClassicsEntree(String entree){
+    public void setClassicsEntree(SpannableStringBuilder entree){
         if(entree != null) {
             tvClassicsEntree.setVisibility(View.VISIBLE);
             tvClassicsEntreeLabel.setVisibility(View.VISIBLE);
@@ -109,7 +110,7 @@ public class ResMenuView extends LinearLayout{
         }
     }
 
-    public void setClassicsSides(String sides){
+    public void setClassicsSides(SpannableStringBuilder sides){
         if(sides != null) {
             tvClassicsSides.setVisibility(View.VISIBLE);
             tvClassicsSidesLabel.setVisibility(View.VISIBLE);
@@ -120,7 +121,7 @@ public class ResMenuView extends LinearLayout{
         }
     }
 
-    public void setGlobalEntree(String entree){
+    public void setGlobalEntree(SpannableStringBuilder entree){
         if(entree != null) {
             tvGlobalEntree.setVisibility(View.VISIBLE);
             tvGlobalEntreeLabel.setVisibility(View.VISIBLE);
@@ -131,7 +132,7 @@ public class ResMenuView extends LinearLayout{
         }
     }
 
-    public void setGlobalSides(String sides){
+    public void setGlobalSides(SpannableStringBuilder sides){
         if(sides != null) {
             tvGlobalSides.setVisibility(View.VISIBLE);
             tvGlobalSidesLabel.setVisibility(View.VISIBLE);
@@ -142,7 +143,7 @@ public class ResMenuView extends LinearLayout{
         }
     }
 
-    public void setOptionsEntree(String entree){
+    public void setOptionsEntree(SpannableStringBuilder entree){
         if(entree != null) {
             tvOptionsEntree.setVisibility(View.VISIBLE);
             tvOptionsEntreeLabel.setVisibility(View.VISIBLE);
@@ -153,7 +154,7 @@ public class ResMenuView extends LinearLayout{
         }
     }
 
-    public void setOptionsSides(String sides){
+    public void setOptionsSides(SpannableStringBuilder sides){
         if(sides != null) {
             tvOptionsSides.setVisibility(View.VISIBLE);
             tvOptionsSidesLabel.setVisibility(View.VISIBLE);
@@ -164,7 +165,7 @@ public class ResMenuView extends LinearLayout{
         }
     }
 
-    public void setSoups(String soups){
+    public void setSoups(SpannableStringBuilder soups){
         if(soups != null) {
             tvSoups.setVisibility(View.VISIBLE);
             tvSoupsLabel.setVisibility(View.VISIBLE);
@@ -175,7 +176,7 @@ public class ResMenuView extends LinearLayout{
         }
     }
 
-    public void setDesserts(String desserts){
+    public void setDesserts(SpannableStringBuilder desserts){
         if(desserts != null) {
             tvDesserts.setVisibility(View.VISIBLE);
             tvDessertsLabel.setVisibility(View.VISIBLE);
@@ -186,7 +187,7 @@ public class ResMenuView extends LinearLayout{
         }
     }
 
-    public void setOther(String other){
+    public void setOther(SpannableStringBuilder other){
         if(other != null) {
             tvOther.setVisibility(View.VISIBLE);
             tvOtherLabel.setVisibility(View.VISIBLE);

@@ -2,6 +2,7 @@ package com.paandw.apps.northdakotadining.view.custom;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.text.SpannableStringBuilder;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,7 @@ public class WestMenuView extends LinearLayout {
         ButterKnife.bind(this, view);
     }
 
-    public void setEntrees(String entrees){
+    public void setEntrees(SpannableStringBuilder entrees){
         if(entrees != null) {
             tvEntrees.setVisibility(View.VISIBLE);
             tvEntreesLabel.setVisibility(View.VISIBLE);
@@ -71,7 +72,7 @@ public class WestMenuView extends LinearLayout {
         }
     }
 
-    public void setWoodstone(String woodstone){
+    public void setWoodstone(SpannableStringBuilder woodstone){
         if(woodstone != null) {
             tvWoodstone.setVisibility(View.VISIBLE);
             tvWoodstoneLabel.setVisibility(View.VISIBLE);
@@ -82,7 +83,7 @@ public class WestMenuView extends LinearLayout {
         }
     }
 
-    public void setStarches(String starches){
+    public void setStarches(SpannableStringBuilder starches){
         if(starches != null) {
             tvStarches.setVisibility(View.VISIBLE);
             tvStarchesLabel.setVisibility(View.VISIBLE);
@@ -93,7 +94,7 @@ public class WestMenuView extends LinearLayout {
         }
     }
 
-    public void setVegetables(String vegetables){
+    public void setVegetables(SpannableStringBuilder vegetables){
         if(vegetables != null) {
             tvVegetables.setVisibility(View.VISIBLE);
             tvVegetablesLabel.setVisibility(View.VISIBLE);
@@ -104,7 +105,7 @@ public class WestMenuView extends LinearLayout {
         }
     }
 
-    public void setSoups(String soups){
+    public void setSoups(SpannableStringBuilder soups){
         if(soups != null) {
             tvSoups.setVisibility(View.VISIBLE);
             tvSoupsLabel.setVisibility(View.VISIBLE);
@@ -115,7 +116,7 @@ public class WestMenuView extends LinearLayout {
         }
     }
 
-    public void setDesserts(String desserts){
+    public void setDesserts(SpannableStringBuilder desserts){
         if(desserts != null) {
             tvDesserts.setVisibility(View.VISIBLE);
             tvDessertsLabel.setVisibility(View.VISIBLE);
@@ -126,7 +127,7 @@ public class WestMenuView extends LinearLayout {
         }
     }
 
-    public void setOther(String other){
+    public void setOther(SpannableStringBuilder other){
         if(other != null) {
             tvOther.setVisibility(View.VISIBLE);
             tvOtherLabel.setVisibility(View.VISIBLE);

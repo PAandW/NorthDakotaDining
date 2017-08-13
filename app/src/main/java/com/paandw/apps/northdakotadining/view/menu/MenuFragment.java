@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,11 @@ public class MenuFragment extends Fragment implements IMenu{
     }
 
     @Override
-    public void setResData(List<String> data) {
+    public void setResData(SpannableStringBuilder grilleEntree, SpannableStringBuilder grilleSides,
+                           SpannableStringBuilder classicsEntree, SpannableStringBuilder classicsSides,
+                           SpannableStringBuilder globalEntree, SpannableStringBuilder globalSides,
+                           SpannableStringBuilder optionsEntree, SpannableStringBuilder optionsSides,
+                           SpannableStringBuilder soups, SpannableStringBuilder desserts, SpannableStringBuilder other) {
 
     }
 
