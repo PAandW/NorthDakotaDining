@@ -1,7 +1,9 @@
 package com.paandw.apps.northdakotadining.view.menu;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
 
@@ -16,10 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuPresenter {
+
     private IMenu view;
     private Context context;
     private String meal;
     private List<String> unionEntrees, unionStarches, unionVegetables, unionSoups, unionDesserts, unionOther;
+
+    private final String resURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=04&locationName=Residence+Dining+Center&naFlag=1";
+    private final String westURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=02&locationName=West+Dining+Center&naFlag=1";
+    private final String unionURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=10&locationName=Union+Dining+Center&naFlag=1";
 
 
     public MenuPresenter(IMenu view, Context context){
@@ -31,6 +38,7 @@ public class MenuPresenter {
         this.meal = meal;
         initializeMenuLists();
         view.showProgress("Loading");
+        new WestMenuDownloader().execute(westURL);
         //TODO show progress dialog and get data
     }
 
@@ -86,8 +94,6 @@ public class MenuPresenter {
 
                 BufferedReader htmlStream = new BufferedReader(new InputStreamReader(url.openStream()));
                 String line;
-
-
 
             } catch (IOException e) {
                 //Do nothing
@@ -149,7 +155,7 @@ public class MenuPresenter {
                 while((line = htlmStream.readLine()) != null){
                     if(line.contains("shortmenumeals") && line.toLowerCase().contains(meal)){
                         isMeal = true;
-                    } else {
+                    } else if(line.contains("shortmenumeals")){
                         isMeal = false;
                     }
 
@@ -158,7 +164,15 @@ public class MenuPresenter {
                         getMenuData(line);
                     }
                 }
+                htlmStream.close();
 
+                mergeMealData(entreesBuilder, entrees, entreesNutrition);
+                mergeMealData(woodstoneBuilder, woodstone, woodstoneNutrition);
+                mergeMealData(starchesBuilder, starches, starchesNutrition);
+                mergeMealData(vegetablesBuilder, vegetables, vegetablesNutrition);
+                mergeMealData(soupsBuilder, soups, soupsNutrition);
+                mergeMealData(dessertsBuilder, desserts, dessertsNutrition);
+                mergeMealData(otherBuilder, other, otherNutrition);
 
             } catch(IOException exception){
                 //Do nothing
@@ -170,7 +184,9 @@ public class MenuPresenter {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-
+            view.setWestData(entreesBuilder, woodstoneBuilder, starchesBuilder, vegetablesBuilder,
+                    soupsBuilder, dessertsBuilder, otherBuilder);
+            view.hideProgress();
         }
 
         private void setMealCategory(String line){
@@ -234,7 +250,7 @@ public class MenuPresenter {
         }
         private void getMenuData(String line){
             if(line.contains("shortmenurecipes")){
-                line = FormatUtil.stripHTML(line);
+                line = FormatUtil.stripHTML(line).trim();
                 if(isEntree){
                     entrees.add(line);
                 } else if(isWoodstone){
@@ -252,13 +268,13 @@ public class MenuPresenter {
                 }
             } else if(line.contains("LegendImages")){
                 if(line.contains("veggie")){
-                    nutritionGraphicHandler += "*veggie*";
+                    nutritionGraphicHandler += "veggie";
                 } else if(line.contains("gluten")){
-                    nutritionGraphicHandler += "*gluten*";
+                    nutritionGraphicHandler += "gluten";
                 } else if(line.contains("nuts")){
-                    nutritionGraphicHandler += "*nuts*";
+                    nutritionGraphicHandler += "nuts";
                 } else if(line.contains("trn")){
-                    nutritionGraphicHandler += "*trace*";
+                    nutritionGraphicHandler += "trn";
                 }
             }
 
@@ -287,11 +303,43 @@ public class MenuPresenter {
                 }
             }
         }
-        private void mergeMealData(){
-            ImageSpan glutenImage = new ImageSpan(context, R.drawable.gluten);
-            ImageSpan nutsImage = new ImageSpan(context, R.drawable.nuts);
-            ImageSpan trnImage = new ImageSpan(context, R.drawable.trn);
-            ImageSpan veggieImage = new ImageSpan(context, R.drawable.veggie);
+        private void mergeMealData(SpannableStringBuilder builder, List<String> menuItems, List<String> nutritionItems){
+            int scale = (int)(16 * context.getResources().getDisplayMetrics().scaledDensity);
+            //TODO rework png files to have transparent backgrounds
+            Drawable glutenDrawable = ContextCompat.getDrawable(context, R.drawable.gluten);
+            glutenDrawable.setBounds(0, 0, scale, scale);
+            Drawable veggieDrawable = ContextCompat.getDrawable(context, R.drawable.veggie);
+            veggieDrawable.setBounds(0, 0, scale, scale);
+            SpannableStringBuilder glutenImage = new SpannableStringBuilder("   ");
+            glutenImage.setSpan(new ImageSpan(glutenDrawable), 1, 2, 12);
+            SpannableStringBuilder nutsImage = new SpannableStringBuilder("   ");
+            nutsImage.setSpan(new ImageSpan(context, R.drawable.nuts), 1, 2, 12);
+            SpannableStringBuilder trnImage = new SpannableStringBuilder("   ");
+            trnImage.setSpan(new ImageSpan(context, R.drawable.trn), 1, 2, 12);
+            SpannableStringBuilder veggieImage = new SpannableStringBuilder("   ");
+            veggieImage.setSpan(new ImageSpan(veggieDrawable), 1, 2, 12);
+
+            for (int i = 0; i < menuItems.size(); i++){
+                builder.append(menuItems.get(i));
+                String nutrition = nutritionItems.get(i);
+                if(nutrition.contains("gluten")){
+                    builder.append(glutenImage);
+                }
+                if(nutrition.contains("nuts")){
+                    builder.append(nutsImage);
+                }
+                if(nutrition.contains("trn")){
+                    builder.append(trnImage);
+                }
+                if(nutrition.contains("veggie")){
+                    builder.append(veggieImage);
+                }
+
+                if(i != menuItems.size() - 1){
+                    builder.append(", ");
+                }
+            }
+
         }
     }
 }

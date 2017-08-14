@@ -54,6 +54,7 @@ public class MenuFragment extends Fragment implements IMenu{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        presenter.start("", "lunch");
     }
 
     @Override
@@ -87,7 +88,13 @@ public class MenuFragment extends Fragment implements IMenu{
     public void setWestData(SpannableStringBuilder entrees, SpannableStringBuilder woodstone,
                             SpannableStringBuilder starches, SpannableStringBuilder vegetables,
                             SpannableStringBuilder soups, SpannableStringBuilder desserts, SpannableStringBuilder other) {
-
+        westMenu.setEntrees(entrees);
+        westMenu.setWoodstone(woodstone);
+        westMenu.setStarches(starches);
+        westMenu.setVegetables(vegetables);
+        westMenu.setSoups(soups);
+        westMenu.setDesserts(desserts);
+        westMenu.setOther(other);
     }
 
     @Override
