@@ -5,28 +5,6 @@
     android:orientation="vertical"
     tools:context=".view.menu.MenuFragment">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?android:actionBarSize"
-        style="@style/AppTheme.Toolbar"/>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:background="@color/grey">
-
-        <TextView
-            android:id="@+id/tv_selected_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/charcoal"
-            android:textSize="16sp"
-            tools:text="Saturday, August 12"/>
-
-    </FrameLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

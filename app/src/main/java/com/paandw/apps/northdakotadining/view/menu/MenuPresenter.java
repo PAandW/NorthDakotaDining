@@ -305,23 +305,36 @@ public class MenuPresenter {
         }
         private void mergeMealData(SpannableStringBuilder builder, List<String> menuItems, List<String> nutritionItems){
             int scale = (int)(16 * context.getResources().getDisplayMetrics().scaledDensity);
-            //TODO rework png files to have transparent backgrounds
             Drawable glutenDrawable = ContextCompat.getDrawable(context, R.drawable.gluten);
             glutenDrawable.setBounds(0, 0, scale, scale);
+
             Drawable veggieDrawable = ContextCompat.getDrawable(context, R.drawable.veggie);
             veggieDrawable.setBounds(0, 0, scale, scale);
-            SpannableStringBuilder glutenImage = new SpannableStringBuilder("   ");
-            glutenImage.setSpan(new ImageSpan(glutenDrawable), 1, 2, 12);
-            SpannableStringBuilder nutsImage = new SpannableStringBuilder("   ");
-            nutsImage.setSpan(new ImageSpan(context, R.drawable.nuts), 1, 2, 12);
-            SpannableStringBuilder trnImage = new SpannableStringBuilder("   ");
-            trnImage.setSpan(new ImageSpan(context, R.drawable.trn), 1, 2, 12);
-            SpannableStringBuilder veggieImage = new SpannableStringBuilder("   ");
-            veggieImage.setSpan(new ImageSpan(veggieDrawable), 1, 2, 12);
+
+            Drawable nutsDrawable = ContextCompat.getDrawable(context, R.drawable.nuts);
+            nutsDrawable.setBounds(0, 0, scale, scale);
+
+            Drawable trnDrawable = ContextCompat.getDrawable(context, R.drawable.trn);
+            trnDrawable.setBounds(0, 0, scale, scale);
 
             for (int i = 0; i < menuItems.size(); i++){
+                SpannableStringBuilder glutenImage = new SpannableStringBuilder("   ");
+                glutenImage.setSpan(new ImageSpan(glutenDrawable), 1, 2, 12);
+
+                SpannableStringBuilder veggieImage = new SpannableStringBuilder("   ");
+                veggieImage.setSpan(new ImageSpan(veggieDrawable), 1, 2, 12);
+
+                SpannableStringBuilder nutsImage = new SpannableStringBuilder("   ");
+                nutsImage.setSpan(new ImageSpan(nutsDrawable), 1, 2, 12);
+
+                SpannableStringBuilder trnImage = new SpannableStringBuilder("   ");
+                trnImage.setSpan(new ImageSpan(trnDrawable), 1, 2, 12);
+
                 builder.append(menuItems.get(i));
                 String nutrition = nutritionItems.get(i);
+                if(nutrition.contains("veggie")){
+                    builder.append(veggieImage);
+                }
                 if(nutrition.contains("gluten")){
                     builder.append(glutenImage);
                 }
@@ -330,9 +343,6 @@ public class MenuPresenter {
                 }
                 if(nutrition.contains("trn")){
                     builder.append(trnImage);
-                }
-                if(nutrition.contains("veggie")){
-                    builder.append(veggieImage);
                 }
 
                 if(i != menuItems.size() - 1){

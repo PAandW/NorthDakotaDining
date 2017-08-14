@@ -4,7 +4,6 @@ package com.paandw.apps.northdakotadining.view.menu;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +24,6 @@ public class MenuFragment extends Fragment implements IMenu{
     private MaterialDialog dialog;
     private MenuPresenter presenter;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.tv_selected_date)
     TextView tvSelectedDate;
     @BindView(R.id.res_menu)
@@ -47,7 +44,6 @@ public class MenuFragment extends Fragment implements IMenu{
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
         ButterKnife.bind(this, view);
         presenter = new MenuPresenter(this, getContext());
-        toolbar.setTitle("North Dakota Dining");
         return view;
     }
 
