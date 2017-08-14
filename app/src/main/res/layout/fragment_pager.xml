@@ -16,6 +16,9 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabBackground="@color/charcoal"
+        app:tabTextColor="@color/light_grey"
+        app:tabSelectedTextColor="@color/white"
         app:tabMode="fixed"
         app:tabGravity="fill"/>
 

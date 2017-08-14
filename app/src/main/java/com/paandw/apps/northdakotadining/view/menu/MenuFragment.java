@@ -8,9 +8,11 @@ import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.hannesdorfmann.fragmentargs.FragmentArgs;
+import com.hannesdorfmann.fragmentargs.annotation.Arg;
+import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import com.paandw.apps.northdakotadining.R;
 import com.paandw.apps.northdakotadining.view.custom.ResMenuView;
 import com.paandw.apps.northdakotadining.view.custom.UnionMenuView;
@@ -19,13 +21,15 @@ import com.paandw.apps.northdakotadining.view.custom.WestMenuView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+@FragmentWithArgs
 public class MenuFragment extends Fragment implements IMenu{
 
     private MaterialDialog dialog;
     private MenuPresenter presenter;
 
-    @BindView(R.id.tv_selected_date)
-    TextView tvSelectedDate;
+    @Arg String date;
+    @Arg String meal;
+
     @BindView(R.id.res_menu)
     ResMenuView resMenu;
     @BindView(R.id.west_menu)
@@ -42,6 +46,7 @@ public class MenuFragment extends Fragment implements IMenu{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
+        FragmentArgs.inject(this);
         ButterKnife.bind(this, view);
         presenter = new MenuPresenter(this, getContext());
         return view;
@@ -50,7 +55,7 @@ public class MenuFragment extends Fragment implements IMenu{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter.start("", "lunch");
+        presenter.start(date, meal);
     }
 
     @Override

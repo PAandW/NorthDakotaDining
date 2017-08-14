@@ -24,9 +24,9 @@ public class MenuPresenter {
     private String meal;
     private List<String> unionEntrees, unionStarches, unionVegetables, unionSoups, unionDesserts, unionOther;
 
-    private final String resURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=04&locationName=Residence+Dining+Center&naFlag=1";
-    private final String westURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=02&locationName=West+Dining+Center&naFlag=1";
-    private final String unionURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=10&locationName=Union+Dining+Center&naFlag=1";
+    private final String defaultResURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=04&locationName=Residence+Dining+Center&naFlag=1";
+    private final String defaultWestURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=02&locationName=West+Dining+Center&naFlag=1";
+    private final String defaultunionURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=10&locationName=Union+Dining+Center&naFlag=1";
 
 
     public MenuPresenter(IMenu view, Context context){
@@ -38,8 +38,10 @@ public class MenuPresenter {
         this.meal = meal;
         initializeMenuLists();
         view.showProgress("Loading");
-        new WestMenuDownloader().execute(westURL);
-        //TODO show progress dialog and get data
+
+        if(date.equalsIgnoreCase("today")) {
+            new WestMenuDownloader().execute(defaultWestURL);
+        }
     }
 
     private void initializeMenuLists(){
