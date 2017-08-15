@@ -4,7 +4,9 @@ import android.text.SpannableStringBuilder;
 
 public interface IMenu {
     void showProgress(String message);
-    void hideProgress();
+    void hideResProgress();
+    void hideWestProgress();
+    void hideUnionProgress();
     void setResData(SpannableStringBuilder grilleEntree, SpannableStringBuilder grilleSides, SpannableStringBuilder classicsEntree, SpannableStringBuilder classicsSides,
                     SpannableStringBuilder globalEntree, SpannableStringBuilder globalSides, SpannableStringBuilder optionsEntree,
                     SpannableStringBuilder optionsSides, SpannableStringBuilder soups, SpannableStringBuilder desserts, SpannableStringBuilder other);

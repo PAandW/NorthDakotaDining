@@ -3,6 +3,7 @@ package com.paandw.apps.northdakotadining.view.custom;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,68 +59,68 @@ public class UnionMenuView extends LinearLayout{
     }
 
     public void setEntrees(SpannableStringBuilder entrees){
-        if(entrees != null) {
+        if(!TextUtils.isEmpty(entrees)) {
             tvEntrees.setVisibility(View.VISIBLE);
             tvEntreesLabel.setVisibility(View.VISIBLE);
             tvEntrees.setText(entrees);
         } else {
-            tvEntrees.setVisibility(View.INVISIBLE);
-            tvEntreesLabel.setVisibility(View.INVISIBLE);
+            tvEntrees.setVisibility(View.GONE);
+            tvEntreesLabel.setVisibility(View.GONE);
         }
     }
 
     public void setStarches(SpannableStringBuilder starches){
-        if(starches != null) {
+        if(!TextUtils.isEmpty(starches)) {
             tvStarches.setVisibility(View.VISIBLE);
             tvStarchesLabel.setVisibility(View.VISIBLE);
             tvStarches.setText(starches);
         } else {
-            tvStarches.setVisibility(View.INVISIBLE);
-            tvStarchesLabel.setVisibility(View.INVISIBLE);
+            tvStarches.setVisibility(View.GONE);
+            tvStarchesLabel.setVisibility(View.GONE);
         }
     }
 
     public void setVegetables(SpannableStringBuilder vegetables){
-        if(vegetables != null) {
+        if(!TextUtils.isEmpty(vegetables)) {
             tvVegetables.setVisibility(View.VISIBLE);
             tvVegetablesLabel.setVisibility(View.VISIBLE);
             tvVegetables.setText(vegetables);
         } else {
-            tvVegetables.setVisibility(View.INVISIBLE);
-            tvVegetablesLabel.setVisibility(View.INVISIBLE);
+            tvVegetables.setVisibility(View.GONE);
+            tvVegetablesLabel.setVisibility(View.GONE);
         }
     }
 
     public void setSoups(SpannableStringBuilder soups){
-        if(soups != null) {
+        if(!TextUtils.isEmpty(soups)) {
             tvSoups.setVisibility(View.VISIBLE);
             tvSoupsLabel.setVisibility(View.VISIBLE);
             tvSoups.setText(soups);
         } else {
-            tvSoups.setVisibility(View.INVISIBLE);
-            tvSoupsLabel.setVisibility(View.INVISIBLE);
+            tvSoups.setVisibility(View.GONE);
+            tvSoupsLabel.setVisibility(View.GONE);
         }
     }
 
     public void setDesserts(SpannableStringBuilder desserts){
-        if(desserts != null) {
+        if(!TextUtils.isEmpty(desserts)) {
             tvDesserts.setVisibility(View.VISIBLE);
             tvDessertsLabel.setVisibility(View.VISIBLE);
             tvDesserts.setText(desserts);
         } else {
-            tvDesserts.setVisibility(View.INVISIBLE);
-            tvDessertsLabel.setVisibility(View.INVISIBLE);
+            tvDesserts.setVisibility(View.GONE);
+            tvDessertsLabel.setVisibility(View.GONE);
         }
     }
 
     public void setOther(SpannableStringBuilder other){
-        if(other != null) {
+        if(!TextUtils.isEmpty(other)) {
             tvOther.setVisibility(View.VISIBLE);
             tvOtherLabel.setVisibility(View.VISIBLE);
             tvOther.setText(other);
         } else {
-            tvOther.setVisibility(View.INVISIBLE);
-            tvOtherLabel.setVisibility(View.INVISIBLE);
+            tvOther.setVisibility(View.GONE);
+            tvOtherLabel.setVisibility(View.GONE);
         }
     }
 }
