@@ -17,4 +17,5 @@
     <string name="vegetables"><u>Vegetables</u></string>
     <string name="woodstone"><u>Woodstone</u></string>
     <string name="other"><u>Other</u></string>
+    <string name="empty_state">No menu data available.</string>
 </resources>

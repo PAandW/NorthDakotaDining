@@ -36,7 +36,8 @@
             <com.paandw.apps.northdakotadining.view.custom.ResMenuView
                 android:id="@+id/res_menu"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                tools:visibility="gone"/>
 
             <me.zhanghai.android.materialprogressbar.MaterialProgressBar
                 android:id="@+id/res_progress_bar"
@@ -44,7 +45,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 app:mpb_progressStyle="circular"
-                app:mpb_indeterminateTint="@color/charcoal"/>
+                app:mpb_indeterminateTint="@color/charcoal"
+                tools:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tv_res_empty_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/empty_state"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -74,6 +83,13 @@
                 app:mpb_progressStyle="circular"
                 app:mpb_indeterminateTint="@color/charcoal"/>
 
+            <TextView
+                android:id="@+id/tv_west_empty_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/empty_state"/>
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
@@ -101,6 +117,13 @@
                 android:layout_gravity="center_horizontal"
                 app:mpb_progressStyle="circular"
                 app:mpb_indeterminateTint="@color/charcoal"/>
+
+            <TextView
+                android:id="@+id/tv_union_empty_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/empty_state"/>
 
         </LinearLayout>
 

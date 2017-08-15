@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hannesdorfmann.fragmentargs.FragmentArgs;
@@ -35,14 +37,20 @@ public class MenuFragment extends Fragment implements IMenu{
     ResMenuView resMenu;
     @BindView(R.id.res_progress_bar)
     MaterialProgressBar resProgressBar;
+    @BindView(R.id.tv_res_empty_state)
+    TextView tvResEmptyState;
     @BindView(R.id.west_menu)
     WestMenuView westMenu;
     @BindView(R.id.west_progress_bar)
     MaterialProgressBar westProgressBar;
+    @BindView(R.id.tv_west_empty_state)
+    TextView tvWestEmptyState;
     @BindView(R.id.union_menu)
     UnionMenuView unionMenu;
     @BindView(R.id.union_progress_bar)
     MaterialProgressBar unionProgressBar;
+    @BindView(R.id.tv_union_empty_state)
+    TextView tvUnionEmptyState;
 
     public MenuFragment() {
         // Required empty public constructor
@@ -67,6 +75,9 @@ public class MenuFragment extends Fragment implements IMenu{
 
     @Override
     public void showProgress(String message) {
+        tvResEmptyState.setVisibility(View.GONE);
+        tvWestEmptyState.setVisibility(View.GONE);
+        tvUnionEmptyState.setVisibility(View.GONE);
         resMenu.setVisibility(View.GONE);
         westMenu.setVisibility(View.GONE);
         unionMenu.setVisibility(View.GONE);
@@ -99,41 +110,70 @@ public class MenuFragment extends Fragment implements IMenu{
                            SpannableStringBuilder globalEntree, SpannableStringBuilder globalSides,
                            SpannableStringBuilder optionsEntree, SpannableStringBuilder optionsSides,
                            SpannableStringBuilder soups, SpannableStringBuilder desserts, SpannableStringBuilder other) {
-        resMenu.setGrilleEntree(grilleEntree);
-        resMenu.setGrilleSides(grilleSides);
-        resMenu.setClassicsEntree(classicsEntree);
-        resMenu.setClassicsSides(classicsSides);
-        resMenu.setGlobalEntree(globalEntree);
-        resMenu.setGlobalSides(globalSides);
-        resMenu.setOptionsEntree(optionsEntree);
-        resMenu.setOptionsSides(optionsSides);
-        resMenu.setSoups(soups);
-        resMenu.setDesserts(desserts);
-        resMenu.setOther(other);
+        boolean isEmpty = isEmptyCheck(grilleEntree, grilleSides, classicsEntree, classicsSides, globalEntree,
+                globalSides, optionsEntree, optionsSides, soups, desserts, other);
+        if(!isEmpty) {
+            resMenu.setGrilleEntree(grilleEntree);
+            resMenu.setGrilleSides(grilleSides);
+            resMenu.setClassicsEntree(classicsEntree);
+            resMenu.setClassicsSides(classicsSides);
+            resMenu.setGlobalEntree(globalEntree);
+            resMenu.setGlobalSides(globalSides);
+            resMenu.setOptionsEntree(optionsEntree);
+            resMenu.setOptionsSides(optionsSides);
+            resMenu.setSoups(soups);
+            resMenu.setDesserts(desserts);
+            resMenu.setOther(other);
+        } else {
+            resMenu.setVisibility(View.GONE);
+            tvResEmptyState.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void setWestData(SpannableStringBuilder entrees, SpannableStringBuilder woodstone,
                             SpannableStringBuilder starches, SpannableStringBuilder vegetables,
                             SpannableStringBuilder soups, SpannableStringBuilder desserts, SpannableStringBuilder other) {
-        westMenu.setEntrees(entrees);
-        westMenu.setWoodstone(woodstone);
-        westMenu.setStarches(starches);
-        westMenu.setVegetables(vegetables);
-        westMenu.setSoups(soups);
-        westMenu.setDesserts(desserts);
-        westMenu.setOther(other);
+        boolean isEmpty = isEmptyCheck(entrees, woodstone, starches, vegetables, soups, desserts, other);
+        if(!isEmpty) {
+            westMenu.setEntrees(entrees);
+            westMenu.setWoodstone(woodstone);
+            westMenu.setStarches(starches);
+            westMenu.setVegetables(vegetables);
+            westMenu.setSoups(soups);
+            westMenu.setDesserts(desserts);
+            westMenu.setOther(other);
+        } else {
+            westMenu.setVisibility(View.GONE);
+            tvWestEmptyState.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void setUnionData(SpannableStringBuilder entrees, SpannableStringBuilder starches,
                              SpannableStringBuilder vegetables, SpannableStringBuilder soups,
                              SpannableStringBuilder desserts, SpannableStringBuilder other) {
-        unionMenu.setEntrees(entrees);
-        unionMenu.setStarches(starches);
-        unionMenu.setVegetables(vegetables);
-        unionMenu.setSoups(soups);
-        unionMenu.setDesserts(desserts);
-        unionMenu.setOther(other);
+        boolean isEmpty = isEmptyCheck(entrees, starches, vegetables, soups, desserts, other);
+        if(!isEmpty) {
+            unionMenu.setEntrees(entrees);
+            unionMenu.setStarches(starches);
+            unionMenu.setVegetables(vegetables);
+            unionMenu.setSoups(soups);
+            unionMenu.setDesserts(desserts);
+            unionMenu.setOther(other);
+        } else {
+            unionMenu.setVisibility(View.GONE);
+            tvUnionEmptyState.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private boolean isEmptyCheck(SpannableStringBuilder... strings){
+        boolean empty = true;
+        for(SpannableStringBuilder string : strings){
+            if(!TextUtils.isEmpty(string)){
+                empty = false;
+            }
+        }
+        return empty;
     }
 }
