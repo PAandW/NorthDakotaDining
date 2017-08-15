@@ -46,6 +46,7 @@ public class PagerFragment extends Fragment {
         ButterKnife.bind(this, view);
         setupToolbar();
         setupViewPager();
+        viewPager.setOffscreenPageLimit(3);
         tabs.setupWithViewPager(viewPager);
         return view;
     }
