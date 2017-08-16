@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/item_today"
+        android:title="Today"/>
+    <item android:id="@+id/item_date_0"
+        android:title="Date 0"/>
+    <item android:id="@+id/item_date_1"
+        android:title="Date 1"/>
+    <item android:id="@+id/item_date_2"
+        android:title="Date 2"/>
+    <item android:id="@+id/item_date_3"
+        android:title="Date 3"/>
+    <item android:id="@+id/item_date_4"
+        android:title="Date 4"/>
+    <item android:id="@+id/item_date_5"
+        android:title="Date 5"/>
+    <item android:id="@+id/item_date_6"
+        android:title="Date 6"/>
+    <item android:id="@+id/item_date_7"
+        android:title="Date 7"/>
+    <item android:id="@+id/item_date_8"
+        android:title="Date 8"/>
+
+</menu>
