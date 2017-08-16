@@ -22,6 +22,7 @@ import com.paandw.apps.northdakotadining.view.custom.WestMenuView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import icepick.Icepick;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 @FragmentWithArgs
@@ -56,6 +57,13 @@ public class MenuFragment extends Fragment implements IMenu{
         // Required empty public constructor
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(savedInstanceState != null){
+            Icepick.restoreInstanceState(this, savedInstanceState);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,14 +82,20 @@ public class MenuFragment extends Fragment implements IMenu{
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Icepick.saveInstanceState(this, outState);
+    }
+
+    @Override
     public void showProgress(String message) {
-        //tvResEmptyState.setVisibility(View.GONE);
+        tvResEmptyState.setVisibility(View.GONE);
         tvWestEmptyState.setVisibility(View.GONE);
         tvUnionEmptyState.setVisibility(View.GONE);
-        //resMenu.setVisibility(View.GONE);
+        resMenu.setVisibility(View.GONE);
         westMenu.setVisibility(View.GONE);
         unionMenu.setVisibility(View.GONE);
-        //resProgressBar.setVisibility(View.VISIBLE);
+        resProgressBar.setVisibility(View.VISIBLE);
         westProgressBar.setVisibility(View.VISIBLE);
         unionProgressBar.setVisibility(View.VISIBLE);
     }

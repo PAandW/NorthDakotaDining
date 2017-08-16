@@ -1,6 +1,7 @@
 package com.paandw.apps.northdakotadining.view.pager;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import icepick.Icepick;
 
 public class PagerFragment extends Fragment {
 
@@ -37,6 +39,13 @@ public class PagerFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(savedInstanceState != null){
+            Icepick.restoreInstanceState(this, savedInstanceState);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,11 +54,23 @@ public class PagerFragment extends Fragment {
         FragmentArgs.inject(this);
         ButterKnife.bind(this, view);
         setupToolbar();
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         setupViewPager();
         viewPager.setOffscreenPageLimit(3);
         viewPager.setCurrentItem(1);
         tabs.setupWithViewPager(viewPager);
-        return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Icepick.saveInstanceState(this, outState);
     }
 
     private void setupViewPager(){
