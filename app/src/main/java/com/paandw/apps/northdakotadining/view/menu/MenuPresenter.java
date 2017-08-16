@@ -22,7 +22,6 @@ public class MenuPresenter {
     private IMenu view;
     private Context context;
     private String meal;
-    private List<String> unionEntrees, unionStarches, unionVegetables, unionSoups, unionDesserts, unionOther;
 
     private final String defaultResURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=04&locationName=Residence+Dining+Center&naFlag=1";
     private final String defaultWestURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=02&locationName=West+Dining+Center&naFlag=1";
@@ -36,35 +35,29 @@ public class MenuPresenter {
 
     public void start(String date, String meal){
         this.meal = meal;
-        initializeMenuLists();
         view.showProgress("Loading");
 
         if(date.equalsIgnoreCase("today")) {
+            new ResMenuDownloader().execute(defaultResURL);
             new WestMenuDownloader().execute(defaultWestURL);
             new UnionMenuDownloader().execute(defaultUnionURL);
         }
     }
 
-    private void initializeMenuLists(){
-        unionEntrees = new ArrayList<>();
-        unionStarches = new ArrayList<>();
-        unionVegetables = new ArrayList<>();
-        unionSoups = new ArrayList<>();
-        unionDesserts = new ArrayList<>();
-        unionOther = new ArrayList<>();
-    }
-
     private class ResMenuDownloader extends AsyncTask<String, Void, Void>{
 
-        private List<String> grilleEntree, grilleSides, classicsEntree, classicsSides,
-                globalEntree, globalSides, optionsEntree, optionsSides, soups, desserts, other;
+        private List<String> grilleEntree, grilleSides, classicsEntree, classicsSides, globalEntree, globalSides,
+            optionsEntree, optionsSides, soups, desserts, other;
         private List<String> grilleEntreeNutrition, grilleSidesNutrition, classicsEntreeNutrition, classicsSidesNutrition,
-                globalEntreeNutrition, globalSidesNutrition, optionsEntreeNutrition, optionsSidesNutrition, soupsNutrition,
-                dessertsNutrition, otherNutrition;
+                globalEntreeNutrition, globalSidesNutrition, optionsEntreeNutrition, optionsSidesNutrition, soupsNutrition, dessertsNutrition, otherNutrition;
+        private SpannableStringBuilder grilleEntreeBuilder, grilleSidesBuilder, classicsEntreeBuilder, classicsSidesBuilder,
+                globalEntreeBuilder, globalSidesBuilder, optionsEntreeBuilder, optionsSidesBuilder, soupsBuilder, dessertsBuilder, otherBuilder;
+        private boolean isMeal, isGrilleEntree, isGrilleSides, isClassicsEntree, isClassicsSides, isGlobalEntree,
+            isGlobalSides, isOptionsEntree, isOptionsSides, isSoups, isDesserts, isOther;
+        private String nutritionGraphicHandler;
 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
             grilleEntree = new ArrayList<>();
             grilleSides = new ArrayList<>();
             classicsEntree = new ArrayList<>();
@@ -88,17 +81,56 @@ public class MenuPresenter {
             soupsNutrition = new ArrayList<>();
             dessertsNutrition = new ArrayList<>();
             otherNutrition = new ArrayList<>();
+
+            grilleEntreeBuilder = new SpannableStringBuilder();
+            grilleSidesBuilder = new SpannableStringBuilder();
+            classicsEntreeBuilder = new SpannableStringBuilder();
+            classicsSidesBuilder = new SpannableStringBuilder();
+            globalEntreeBuilder = new SpannableStringBuilder();
+            globalSidesBuilder = new SpannableStringBuilder();
+            optionsEntreeBuilder = new SpannableStringBuilder();
+            optionsSidesBuilder = new SpannableStringBuilder();
+            soupsBuilder = new SpannableStringBuilder();
+            dessertsBuilder = new SpannableStringBuilder();
+            otherBuilder = new SpannableStringBuilder();
+
+            super.onPreExecute();
         }
 
         @Override
         protected Void doInBackground(String... strings) {
-            try {
+            try{
                 URL url = new URL(strings[0]);
-
-                BufferedReader htmlStream = new BufferedReader(new InputStreamReader(url.openStream()));
+                BufferedReader htlmStream = new BufferedReader(new InputStreamReader(url.openStream()));
                 String line;
 
-            } catch (IOException e) {
+                while((line = htlmStream.readLine()) != null){
+                    if(line.contains("shortmenumeals") && line.toLowerCase().contains(meal)){
+                        isMeal = true;
+                    } else if(line.contains("shortmenumeals")){
+                        isMeal = false;
+                    }
+
+                    if(isMeal) {
+                        setMealCategory(line);
+                        getMenuData(line);
+                    }
+                }
+                htlmStream.close();
+
+                mergeMealData(grilleEntreeBuilder, grilleEntree, grilleEntreeNutrition);
+                mergeMealData(grilleSidesBuilder, grilleSides, grilleSidesNutrition);
+                mergeMealData(classicsEntreeBuilder, classicsEntree, classicsEntreeNutrition);
+                mergeMealData(classicsSidesBuilder, classicsSides, classicsSidesNutrition);
+                mergeMealData(globalEntreeBuilder, globalEntree, globalEntreeNutrition);
+                mergeMealData(globalSidesBuilder, globalSides, globalSidesNutrition);
+                mergeMealData(optionsEntreeBuilder, optionsEntree, optionsEntreeNutrition);
+                mergeMealData(optionsSidesBuilder, optionsSides, optionsSidesNutrition);
+                mergeMealData(soupsBuilder, soups, soupsNutrition);
+                mergeMealData(dessertsBuilder, desserts, dessertsNutrition);
+                mergeMealData(otherBuilder, other, otherNutrition);
+
+            } catch(IOException exception){
                 //Do nothing
             }
 
@@ -108,6 +140,270 @@ public class MenuPresenter {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            view.setResData(grilleEntreeBuilder, grilleSidesBuilder, classicsEntreeBuilder, classicsSidesBuilder,
+                    globalEntreeBuilder, globalSidesBuilder, optionsEntreeBuilder, optionsSidesBuilder,
+                    soupsBuilder, dessertsBuilder, otherBuilder);
+            view.hideResProgress();
+        }
+
+        private void setMealCategory(String line){
+            if(line.toLowerCase().contains("grille entree")) {
+                isGrilleEntree = true;
+                isGrilleSides = false;
+                isClassicsEntree = false;
+                isClassicsSides = false;
+                isGlobalEntree = false;
+                isGlobalSides = false;
+                isOptionsEntree = false;
+                isOptionsSides = false;
+                isSoups = false;
+                isDesserts = false;
+                isOther = false;
+            } else if(line.toLowerCase().contains("grille sides")){
+                isGrilleEntree = false;
+                isGrilleSides = true;
+                isClassicsEntree = false;
+                isClassicsSides = false;
+                isGlobalEntree = false;
+                isGlobalSides = false;
+                isOptionsEntree = false;
+                isOptionsSides = false;
+                isSoups = false;
+                isDesserts = false;
+                isOther = false;
+            } else if(line.toLowerCase().contains("classics entree")){
+                isGrilleEntree = false;
+                isGrilleSides = false;
+                isClassicsEntree = true;
+                isClassicsSides = false;
+                isGlobalEntree = false;
+                isGlobalSides = false;
+                isOptionsEntree = false;
+                isOptionsSides = false;
+                isSoups = false;
+                isDesserts = false;
+                isOther = false;
+            } else if(line.toLowerCase().contains("classics sides")){
+                isGrilleEntree = false;
+                isGrilleSides = false;
+                isClassicsEntree = false;
+                isClassicsSides = true;
+                isGlobalEntree = false;
+                isGlobalSides = false;
+                isOptionsEntree = false;
+                isOptionsSides = false;
+                isSoups = false;
+                isDesserts = false;
+                isOther = false;
+            } else if(line.toLowerCase().contains("global entree")){
+                isGrilleEntree = false;
+                isGrilleSides = false;
+                isClassicsEntree = false;
+                isClassicsSides = false;
+                isGlobalEntree = true;
+                isGlobalSides = false;
+                isOptionsEntree = false;
+                isOptionsSides = false;
+                isSoups = false;
+                isDesserts = false;
+                isOther = false;
+            } else if(line.toLowerCase().contains("global sides")){
+                isGrilleEntree = false;
+                isGrilleSides = false;
+                isClassicsEntree = false;
+                isClassicsSides = false;
+                isGlobalEntree = false;
+                isGlobalSides = true;
+                isOptionsEntree = false;
+                isOptionsSides = false;
+                isSoups = false;
+                isDesserts = false;
+                isOther = false;
+            } else if(line.toLowerCase().contains("options entree")){
+                isGrilleEntree = false;
+                isGrilleSides = false;
+                isClassicsEntree = false;
+                isClassicsSides = false;
+                isGlobalEntree = false;
+                isGlobalSides = false;
+                isOptionsEntree = true;
+                isOptionsSides = false;
+                isSoups = false;
+                isDesserts = false;
+                isOther = false;
+            } else if(line.toLowerCase().contains("options sides")){
+                isGrilleEntree = false;
+                isGrilleSides = false;
+                isClassicsEntree = false;
+                isClassicsSides = false;
+                isGlobalEntree = false;
+                isGlobalSides = false;
+                isOptionsEntree = false;
+                isOptionsSides = true;
+                isSoups = false;
+                isDesserts = false;
+                isOther = false;
+            } else if(line.toLowerCase().contains("soups")){
+                isGrilleEntree = false;
+                isGrilleSides = false;
+                isClassicsEntree = false;
+                isClassicsSides = false;
+                isGlobalEntree = false;
+                isGlobalSides = false;
+                isOptionsEntree = false;
+                isOptionsSides = false;
+                isSoups = true;
+                isDesserts = false;
+                isOther = false;
+            } else if(line.toLowerCase().contains("desserts")){
+                isGrilleEntree = false;
+                isGrilleSides = false;
+                isClassicsEntree = false;
+                isClassicsSides = false;
+                isGlobalEntree = false;
+                isGlobalSides = false;
+                isOptionsEntree = false;
+                isOptionsSides = false;
+                isSoups = false;
+                isDesserts = true;
+                isOther = false;
+            } else if(line.toLowerCase().contains("shortmenucats")){
+                isGrilleEntree = false;
+                isGrilleSides = false;
+                isClassicsEntree = false;
+                isClassicsSides = false;
+                isGlobalEntree = false;
+                isGlobalSides = false;
+                isOptionsEntree = false;
+                isOptionsSides = false;
+                isSoups = false;
+                isDesserts = false;
+                isOther = false;
+            }
+        }
+        private void getMenuData(String line){
+            if(line.contains("shortmenurecipes")){
+                line = FormatUtil.stripHTML(line).trim();
+                if(isGrilleEntree){
+                    grilleEntree.add(line);
+                } else if(isGrilleSides){
+                    grilleSides.add(line);
+                } else if(isClassicsEntree){
+                    classicsEntree.add(line);
+                } else if(isClassicsSides){
+                    classicsSides.add(line);
+                } else if(isGlobalEntree){
+                    globalEntree.add(line);
+                } else if(isGlobalSides){
+                    globalSides.add(line);
+                } else if(isOptionsEntree){
+                    optionsEntree.add(line);
+                } else if(isOptionsSides){
+                    optionsSides.add(line);
+                } else if(isSoups){
+                    soups.add(line);
+                } else if(isDesserts){
+                    desserts.add(line);
+                } else if(isOther){
+                    other.add(line);
+                }
+
+            } else if(line.contains("LegendImages")){
+                if(line.contains("veggie")){
+                    nutritionGraphicHandler += "veggie";
+                } else if(line.contains("gluten")){
+                    nutritionGraphicHandler += "gluten";
+                } else if(line.contains("nuts")){
+                    nutritionGraphicHandler += "nuts";
+                } else if(line.contains("trn")){
+                    nutritionGraphicHandler += "trn";
+                }
+            }
+
+            if(line.contains("shortmenuprices")){
+                if(isGrilleEntree){
+                    grilleEntreeNutrition.add(nutritionGraphicHandler);
+                    nutritionGraphicHandler = "";
+                } else if(isGrilleSides){
+                    grilleSidesNutrition.add(nutritionGraphicHandler);
+                    nutritionGraphicHandler = "";
+                } else if(isClassicsEntree){
+                    classicsEntreeNutrition.add(nutritionGraphicHandler);
+                    nutritionGraphicHandler = "";
+                } else if(isClassicsSides){
+                    classicsSidesNutrition.add(nutritionGraphicHandler);
+                    nutritionGraphicHandler = "";
+                } else if(isGlobalEntree){
+                    globalEntreeNutrition.add(nutritionGraphicHandler);
+                    nutritionGraphicHandler = "";
+                } else if(isGlobalSides){
+                    globalSidesNutrition.add(nutritionGraphicHandler);
+                    nutritionGraphicHandler = "";
+                } else if(isOptionsEntree){
+                    optionsEntreeNutrition.add(nutritionGraphicHandler);
+                    nutritionGraphicHandler = "";
+                } else if(isOptionsSides){
+                    optionsSidesNutrition.add(nutritionGraphicHandler);
+                    nutritionGraphicHandler = "";
+                } else if(isSoups){
+                    soupsNutrition.add(nutritionGraphicHandler);
+                    nutritionGraphicHandler = "";
+                } else if(isDesserts){
+                    dessertsNutrition.add(nutritionGraphicHandler);
+                    nutritionGraphicHandler = "";
+                } else if(isOther){
+                    otherNutrition.add(nutritionGraphicHandler);
+                    nutritionGraphicHandler = "";
+                }
+            }
+        }
+        private void mergeMealData(SpannableStringBuilder builder, List<String> menuItems, List<String> nutritionItems){
+            int scale = (int)(16 * context.getResources().getDisplayMetrics().scaledDensity);
+            Drawable glutenDrawable = ContextCompat.getDrawable(context, R.drawable.gluten);
+            glutenDrawable.setBounds(0, 0, scale, scale);
+
+            Drawable veggieDrawable = ContextCompat.getDrawable(context, R.drawable.veggie);
+            veggieDrawable.setBounds(0, 0, scale, scale);
+
+            Drawable nutsDrawable = ContextCompat.getDrawable(context, R.drawable.nuts);
+            nutsDrawable.setBounds(0, 0, scale, scale);
+
+            Drawable trnDrawable = ContextCompat.getDrawable(context, R.drawable.trn);
+            trnDrawable.setBounds(0, 0, scale, scale);
+
+            for (int i = 0; i < menuItems.size(); i++){
+                SpannableStringBuilder glutenImage = new SpannableStringBuilder("   ");
+                glutenImage.setSpan(new ImageSpan(glutenDrawable), 1, 2, 12);
+
+                SpannableStringBuilder veggieImage = new SpannableStringBuilder("   ");
+                veggieImage.setSpan(new ImageSpan(veggieDrawable), 1, 2, 12);
+
+                SpannableStringBuilder nutsImage = new SpannableStringBuilder("   ");
+                nutsImage.setSpan(new ImageSpan(nutsDrawable), 1, 2, 12);
+
+                SpannableStringBuilder trnImage = new SpannableStringBuilder("   ");
+                trnImage.setSpan(new ImageSpan(trnDrawable), 1, 2, 12);
+
+                builder.append(menuItems.get(i));
+                String nutrition = nutritionItems.get(i);
+                if(nutrition.contains("veggie")){
+                    builder.append(veggieImage);
+                }
+                if(nutrition.contains("gluten")){
+                    builder.append(glutenImage);
+                }
+                if(nutrition.contains("nuts")){
+                    builder.append(nutsImage);
+                }
+                if(nutrition.contains("trn")){
+                    builder.append(trnImage);
+                }
+
+                if(i != menuItems.size() - 1){
+                    builder.append(", ");
+                }
+            }
+
         }
     }
 

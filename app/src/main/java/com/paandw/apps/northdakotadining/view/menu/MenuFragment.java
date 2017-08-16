@@ -75,32 +75,29 @@ public class MenuFragment extends Fragment implements IMenu{
 
     @Override
     public void showProgress(String message) {
-        tvResEmptyState.setVisibility(View.GONE);
+        //tvResEmptyState.setVisibility(View.GONE);
         tvWestEmptyState.setVisibility(View.GONE);
         tvUnionEmptyState.setVisibility(View.GONE);
-        resMenu.setVisibility(View.GONE);
+        //resMenu.setVisibility(View.GONE);
         westMenu.setVisibility(View.GONE);
         unionMenu.setVisibility(View.GONE);
-        resProgressBar.setVisibility(View.VISIBLE);
+        //resProgressBar.setVisibility(View.VISIBLE);
         westProgressBar.setVisibility(View.VISIBLE);
         unionProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideResProgress() {
-        resMenu.setVisibility(View.VISIBLE);
         resProgressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void hideWestProgress() {
-        westMenu.setVisibility(View.VISIBLE);
         westProgressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void hideUnionProgress() {
-        unionMenu.setVisibility(View.VISIBLE);
         unionProgressBar.setVisibility(View.GONE);
     }
 
@@ -124,6 +121,8 @@ public class MenuFragment extends Fragment implements IMenu{
             resMenu.setSoups(soups);
             resMenu.setDesserts(desserts);
             resMenu.setOther(other);
+            resMenu.setVisibility(View.VISIBLE);
+            tvResEmptyState.setVisibility(View.GONE);
         } else {
             resMenu.setVisibility(View.GONE);
             tvResEmptyState.setVisibility(View.VISIBLE);
@@ -143,6 +142,8 @@ public class MenuFragment extends Fragment implements IMenu{
             westMenu.setSoups(soups);
             westMenu.setDesserts(desserts);
             westMenu.setOther(other);
+            westMenu.setVisibility(View.VISIBLE);
+            tvWestEmptyState.setVisibility(View.GONE);
         } else {
             westMenu.setVisibility(View.GONE);
             tvWestEmptyState.setVisibility(View.VISIBLE);
@@ -161,6 +162,8 @@ public class MenuFragment extends Fragment implements IMenu{
             unionMenu.setSoups(soups);
             unionMenu.setDesserts(desserts);
             unionMenu.setOther(other);
+            unionMenu.setVisibility(View.VISIBLE);
+            tvUnionEmptyState.setVisibility(View.GONE);
         } else {
             unionMenu.setVisibility(View.GONE);
             tvUnionEmptyState.setVisibility(View.VISIBLE);

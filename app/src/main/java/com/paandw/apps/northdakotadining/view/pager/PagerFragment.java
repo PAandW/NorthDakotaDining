@@ -47,6 +47,7 @@ public class PagerFragment extends Fragment {
         setupToolbar();
         setupViewPager();
         viewPager.setOffscreenPageLimit(3);
+        viewPager.setCurrentItem(1);
         tabs.setupWithViewPager(viewPager);
         return view;
     }
