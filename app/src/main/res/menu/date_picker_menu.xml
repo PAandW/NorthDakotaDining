@@ -2,8 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/item_today"
         android:title="Today"/>
-    <item android:id="@+id/item_date_0"
-        android:title="Date 0"/>
     <item android:id="@+id/item_date_1"
         android:title="Date 1"/>
     <item android:id="@+id/item_date_2"
@@ -20,5 +18,7 @@
         android:title="Date 7"/>
     <item android:id="@+id/item_date_8"
         android:title="Date 8"/>
+    <item android:id="@+id/item_date_9"
+        android:title="Date 9"/>
 
 </menu>

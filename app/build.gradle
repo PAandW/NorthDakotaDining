@@ -32,6 +32,7 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.9.4.5'
     compile 'me.zhanghai.android.materialprogressbar:library:1.4.1'
     compile 'com.hannesdorfmann.fragmentargs:annotation:3.0.2'
+    compile 'com.jakewharton.threetenabp:threetenabp:1.0.5'
     annotationProcessor 'com.hannesdorfmann.fragmentargs:processor:3.0.2'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'

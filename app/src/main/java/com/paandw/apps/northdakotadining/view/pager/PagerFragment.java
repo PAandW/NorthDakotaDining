@@ -9,22 +9,33 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hannesdorfmann.fragmentargs.FragmentArgs;
+import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.paandw.apps.northdakotadining.R;
+import com.paandw.apps.northdakotadining.util.FormatUtil;
 import com.paandw.apps.northdakotadining.view.menu.MenuFragmentBuilder;
 
+import org.threeten.bp.LocalDateTime;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import icepick.Icepick;
 
 public class PagerFragment extends Fragment {
+
+    private Menu menu;
+    private final SimpleDateFormat MAIN_FORMATTER = new SimpleDateFormat("EEEE, MMMM dd", Locale.US);
+    private final SimpleDateFormat MENU_FORMATTER = new SimpleDateFormat("EEE, MMM dd", Locale.US);
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -53,7 +64,11 @@ public class PagerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pager, container, false);
         FragmentArgs.inject(this);
         ButterKnife.bind(this, view);
+        AndroidThreeTen.init(getContext());
         setupToolbar();
+        LocalDateTime now = LocalDateTime.now();
+        String today = FormatUtil.getSelectedDateText(now);
+        tvSelectedDate.setText(today);
 
         return view;
     }
@@ -83,6 +98,17 @@ public class PagerFragment extends Fragment {
 
     private void setupToolbar(){
         toolbar.setTitle("North Dakota Dining");
+        toolbar.inflateMenu(R.menu.date_picker_menu);
+        List<String> dateList = new ArrayList<>();
+        for(int i = 1; i < 10; i++){
+            LocalDateTime date = LocalDateTime.now().plusDays(i);
+            dateList.add(FormatUtil.getMenuDateText(date));
+        }
+        for(int i = 1; i < 10; i++){
+            if(toolbar.getMenu().getItem(i).getTitle().equals("Date " + i)){
+                toolbar.getMenu().getItem(i).setTitle(dateList.get(i-1));
+            }
+        }
     }
 
     private class PagerAdapter extends FragmentPagerAdapter{
