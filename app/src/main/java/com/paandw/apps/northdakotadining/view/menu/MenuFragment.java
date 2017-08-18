@@ -78,6 +78,7 @@ public class MenuFragment extends Fragment implements IMenu{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        System.out.println(date);
         presenter.start(date, meal);
     }
 

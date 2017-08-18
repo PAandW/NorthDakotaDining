@@ -36,12 +36,126 @@ public class MenuPresenter {
     public void start(String date, String meal){
         this.meal = meal;
         view.showProgress("Loading");
+        String day, month;
 
         if(date.equalsIgnoreCase("today")) {
             new ResMenuDownloader().execute(defaultResURL);
             new WestMenuDownloader().execute(defaultWestURL);
             new UnionMenuDownloader().execute(defaultUnionURL);
+        } else {
+            String[] dateArray = date.split(",");
+            month = getMonthValue(dateArray[1]);
+            day = getDayValue(dateArray[1]);
+
+            String newResURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=04&locationName=Residence+Dining+Center&naFlag=" +
+                    "1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=" + month + "%2F" + day;
+            String newWestURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=02&locationName=West+Dining+Center&naFlag=" +
+                    "1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=" + month + "%2f" + day;
+            String newUnionURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=10&locationName=Union+Dining+Center&naFlag=" +
+                    "1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=" + month + "%2F" + day;
+
+            System.out.println(newWestURL);
+
+            new ResMenuDownloader().execute(newResURL);
+            new WestMenuDownloader().execute(newWestURL);
+            new UnionMenuDownloader().execute(newUnionURL);
         }
+    }
+
+    private String getMonthValue(String date){
+        if(date.contains("Jan"))
+            return "1";
+        else if(date.contains("Feb"))
+            return "2";
+        else if(date.contains("March"))
+            return "3";
+        else if(date.contains("April"))
+            return "4";
+        else if(date.contains("May"))
+            return "5";
+        else if(date.contains("June"))
+            return "6";
+        else if(date.contains("July"))
+            return "7";
+        else if(date.contains("Aug"))
+            return "8";
+        else if(date.contains("Sep"))
+            return "9";
+        else if(date.contains("Oct"))
+            return "10";
+        else if(date.contains("Nov"))
+            return "11";
+        else if(date.contains("Dec"))
+            return "12";
+        else
+            return "";
+    }
+
+    private String getDayValue(String date){
+        if(date.contains("01"))
+            return "1";
+        else if(date.contains("02"))
+            return "2";
+        else if(date.contains("03"))
+            return "3";
+        else if(date.contains("04"))
+            return "4";
+        else if(date.contains("05"))
+            return "5";
+        else if(date.contains("06"))
+            return "6";
+        else if(date.contains("07"))
+            return "7";
+        else if(date.contains("08"))
+            return "8";
+        else if(date.contains("09"))
+            return "9";
+        else if(date.contains("10"))
+            return "10";
+        else if(date.contains("11"))
+            return "11";
+        else if(date.contains("12"))
+            return "12";
+        else if(date.contains("13"))
+            return "13";
+        else if(date.contains("14"))
+            return "14";
+        else if(date.contains("15"))
+            return "15";
+        else if(date.contains("16"))
+            return "16";
+        else if(date.contains("17"))
+            return "17";
+        else if(date.contains("18"))
+            return "18";
+        else if(date.contains("19"))
+            return "19";
+        else if(date.contains("20"))
+            return "20";
+        else if(date.contains("21"))
+            return "21";
+        else if(date.contains("22"))
+            return "22";
+        else if(date.contains("23"))
+            return "23";
+        else if(date.contains("24"))
+            return "24";
+        else if(date.contains("25"))
+            return "25";
+        else if(date.contains("26"))
+            return "26";
+        else if(date.contains("27"))
+            return "27";
+        else if(date.contains("28"))
+            return "28";
+        else if(date.contains("29"))
+            return "29";
+        else if(date.contains("30"))
+            return "30";
+        else if(date.contains("31"))
+            return "31";
+        else
+            return "";
     }
 
     private class ResMenuDownloader extends AsyncTask<String, Void, Void>{
@@ -631,16 +745,16 @@ public class MenuPresenter {
 
                 builder.append(menuItems.get(i));
                 String nutrition = nutritionItems.get(i);
-                if(nutrition.contains("veggie")){
+                if(nutrition != null && nutrition.contains("veggie")){
                     builder.append(veggieImage);
                 }
-                if(nutrition.contains("gluten")){
+                if(nutrition != null && nutrition.contains("gluten")){
                     builder.append(glutenImage);
                 }
-                if(nutrition.contains("nuts")){
+                if(nutrition != null && nutrition.contains("nuts")){
                     builder.append(nutsImage);
                 }
-                if(nutrition.contains("trn")){
+                if(nutrition != null && nutrition.contains("trn")){
                     builder.append(trnImage);
                 }
 

@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ import icepick.Icepick;
 public class PagerFragment extends Fragment {
 
     private Menu menu;
+    private String date = "today";
     private final SimpleDateFormat MAIN_FORMATTER = new SimpleDateFormat("EEEE, MMMM dd", Locale.US);
     private final SimpleDateFormat MENU_FORMATTER = new SimpleDateFormat("EEE, MMM dd", Locale.US);
 
@@ -76,10 +78,7 @@ public class PagerFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setupViewPager();
-        viewPager.setOffscreenPageLimit(3);
-        viewPager.setCurrentItem(1);
-        tabs.setupWithViewPager(viewPager);
+        setupViewPager(date);
     }
 
     @Override
@@ -88,27 +87,51 @@ public class PagerFragment extends Fragment {
         Icepick.saveInstanceState(this, outState);
     }
 
-    private void setupViewPager(){
+    private void setupViewPager(String date){
         PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new MenuFragmentBuilder("today", "breakfast").build(), "Breakfast");
-        adapter.addFragment(new MenuFragmentBuilder("today", "lunch").build(), "Lunch");
-        adapter.addFragment(new MenuFragmentBuilder("today", "dinner").build(), "Dinner");
+        adapter.addFragment(new MenuFragmentBuilder(date, "breakfast").build(), "Breakfast");
+        adapter.addFragment(new MenuFragmentBuilder(date, "lunch").build(), "Lunch");
+        adapter.addFragment(new MenuFragmentBuilder(date, "dinner").build(), "Dinner");
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(3);
+        viewPager.setCurrentItem(1);
+        tabs.setupWithViewPager(viewPager);
+    }
+
+    private void setupViewPager(LocalDateTime date){
+        PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
+        adapter.addFragment(new MenuFragmentBuilder(FormatUtil.getMenuDateText(date), "breakfast").build(), "Breakfast");
+        adapter.addFragment(new MenuFragmentBuilder(FormatUtil.getMenuDateText(date), "lunch").build(), "Lunch");
+        adapter.addFragment(new MenuFragmentBuilder(FormatUtil.getMenuDateText(date), "dinner").build(), "Dinner");
+        viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(3);
+        viewPager.setCurrentItem(1);
+        tabs.setupWithViewPager(viewPager);
     }
 
     private void setupToolbar(){
         toolbar.setTitle("North Dakota Dining");
         toolbar.inflateMenu(R.menu.date_picker_menu);
-        List<String> dateList = new ArrayList<>();
+        final List<String> dateStringList = new ArrayList<>();
         for(int i = 1; i < 10; i++){
             LocalDateTime date = LocalDateTime.now().plusDays(i);
-            dateList.add(FormatUtil.getMenuDateText(date));
+            dateStringList.add(FormatUtil.getMenuDateText(date));
         }
         for(int i = 1; i < 10; i++){
             if(toolbar.getMenu().getItem(i).getTitle().equals("Date " + i)){
-                toolbar.getMenu().getItem(i).setTitle(dateList.get(i-1));
+                toolbar.getMenu().getItem(i).setTitle(dateStringList.get(i-1));
             }
         }
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                System.out.println(item.getTitle().toString());
+                date = item.getTitle().toString();
+                setupViewPager(date);
+                return true;
+            }
+        });
     }
 
     private class PagerAdapter extends FragmentPagerAdapter{
