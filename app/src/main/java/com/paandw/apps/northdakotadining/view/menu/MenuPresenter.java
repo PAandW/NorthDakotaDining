@@ -500,16 +500,16 @@ public class MenuPresenter {
 
                 builder.append(menuItems.get(i));
                 String nutrition = nutritionItems.get(i);
-                if(nutrition.contains("veggie")){
+                if(nutrition != null && nutrition.contains("veggie")){
                     builder.append(veggieImage);
                 }
-                if(nutrition.contains("gluten")){
+                if(nutrition != null &&nutrition.contains("gluten")){
                     builder.append(glutenImage);
                 }
-                if(nutrition.contains("nuts")){
+                if(nutrition != null &&nutrition.contains("nuts")){
                     builder.append(nutsImage);
                 }
-                if(nutrition.contains("trn")){
+                if(nutrition != null &&nutrition.contains("trn")){
                     builder.append(trnImage);
                 }
 
@@ -967,16 +967,16 @@ public class MenuPresenter {
 
                 builder.append(menuItems.get(i));
                 String nutrition = nutritionItems.get(i);
-                if(nutrition.contains("veggie")){
+                if(nutrition != null && nutrition.contains("veggie")){
                     builder.append(veggieImage);
                 }
-                if(nutrition.contains("gluten")){
+                if(nutrition != null && nutrition.contains("gluten")){
                     builder.append(glutenImage);
                 }
-                if(nutrition.contains("nuts")){
+                if(nutrition != null && nutrition.contains("nuts")){
                     builder.append(nutsImage);
                 }
-                if(nutrition.contains("trn")){
+                if(nutrition != null && nutrition.contains("trn")){
                     builder.append(trnImage);
                 }
 

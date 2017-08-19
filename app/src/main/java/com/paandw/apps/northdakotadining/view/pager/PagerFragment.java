@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -36,6 +36,7 @@ public class PagerFragment extends Fragment {
 
     private Menu menu;
     private String date = "today";
+    private PagerAdapter adapter;
     private final SimpleDateFormat MAIN_FORMATTER = new SimpleDateFormat("EEEE, MMMM dd", Locale.US);
     private final SimpleDateFormat MENU_FORMATTER = new SimpleDateFormat("EEE, MMM dd", Locale.US);
 
@@ -88,7 +89,11 @@ public class PagerFragment extends Fragment {
     }
 
     private void setupViewPager(String date){
-        PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
+        if(!"today".equalsIgnoreCase(date)){
+            date = FormatUtil.getSelectedFromMenuText(date);
+            tvSelectedDate.setText(date);
+        }
+        adapter = new PagerAdapter(getChildFragmentManager());
         adapter.addFragment(new MenuFragmentBuilder(date, "breakfast").build(), "Breakfast");
         adapter.addFragment(new MenuFragmentBuilder(date, "lunch").build(), "Lunch");
         adapter.addFragment(new MenuFragmentBuilder(date, "dinner").build(), "Dinner");
@@ -112,7 +117,7 @@ public class PagerFragment extends Fragment {
     private void setupToolbar(){
         toolbar.setTitle("North Dakota Dining");
         toolbar.inflateMenu(R.menu.date_picker_menu);
-        final List<String> dateStringList = new ArrayList<>();
+        List<String> dateStringList = new ArrayList<>();
         for(int i = 1; i < 10; i++){
             LocalDateTime date = LocalDateTime.now().plusDays(i);
             dateStringList.add(FormatUtil.getMenuDateText(date));
@@ -134,12 +139,14 @@ public class PagerFragment extends Fragment {
         });
     }
 
-    private class PagerAdapter extends FragmentPagerAdapter{
+    private class PagerAdapter extends FragmentStatePagerAdapter{
         private final List<Fragment> fragmentList = new ArrayList<>();
         private final List<String> fragmentTitleList = new ArrayList<>();
+        private final FragmentManager manager;
 
         public PagerAdapter(FragmentManager manager) {
             super(manager);
+            this.manager = manager;
         }
 
         @Override
@@ -155,6 +162,14 @@ public class PagerFragment extends Fragment {
         public void addFragment(Fragment fragment, String title) {
             fragmentList.add(fragment);
             fragmentTitleList.add(title);
+        }
+
+        public void clearAll(){
+            for(int i = 0; i < fragmentList.size(); i++){
+                manager.beginTransaction().remove(fragmentList.get(i)).commit();
+            }
+            fragmentList.clear();
+            fragmentTitleList.clear();
         }
 
         @Override

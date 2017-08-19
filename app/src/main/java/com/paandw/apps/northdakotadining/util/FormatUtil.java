@@ -57,6 +57,26 @@ public class FormatUtil {
         return String.format("%s, %s %s", dayOfWeek, monthOfYear, dayOfMonth);
     }
 
+    public static String getSelectedFromMenuText(String date){
+        if(date.contains("Jan")){
+            return date.replace("Jan", "January");
+        } else if(date.contains("Feb")){
+            return date.replace("Feb", "February");
+        } else if(date.contains("Aug")){
+            return date.replace("Aug", "August");
+        } else if(date.contains("Sept")){
+            return date.replace("Sept", "September");
+        } else if(date.contains("Oct")){
+            return date.replace("Oct", "October");
+        } else if(date.contains("Nov")){
+            return date.replace("Nov", "November");
+        } else if(date.contains("Dec")){
+            return date.replace("Dec", "December");
+        } else {
+            return date;
+        }
+    }
+
     public static String getMenuDateText(LocalDateTime date){
         String dayOfWeek = date.getDayOfWeek().toString();
         String monthOfYear = date.getMonth().toString();
