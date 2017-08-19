@@ -54,8 +54,6 @@ public class MenuPresenter {
             String newUnionURL = "https://www.ndsu.edu/dining/menu/shortmenu.asp?sName=MENUS+ON+THE+WEB&locationNum=10&locationName=Union+Dining+Center&naFlag=" +
                     "1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=" + month + "%2F" + day;
 
-            System.out.println(newWestURL);
-
             new ResMenuDownloader().execute(newResURL);
             new WestMenuDownloader().execute(newWestURL);
             new UnionMenuDownloader().execute(newUnionURL);

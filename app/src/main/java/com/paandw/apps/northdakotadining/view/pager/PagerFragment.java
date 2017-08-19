@@ -131,7 +131,6 @@ public class PagerFragment extends Fragment {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                System.out.println(item.getTitle().toString());
                 date = item.getTitle().toString();
                 setupViewPager(date);
                 return true;
