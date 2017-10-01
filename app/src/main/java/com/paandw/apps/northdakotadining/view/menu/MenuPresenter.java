@@ -65,15 +65,15 @@ public class MenuPresenter {
             return "1";
         else if(date.contains("Feb"))
             return "2";
-        else if(date.contains("March"))
+        else if(date.contains("Mar"))
             return "3";
-        else if(date.contains("April"))
+        else if(date.contains("Apr"))
             return "4";
         else if(date.contains("May"))
             return "5";
-        else if(date.contains("June"))
+        else if(date.contains("Jun"))
             return "6";
-        else if(date.contains("July"))
+        else if(date.contains("Jul"))
             return "7";
         else if(date.contains("Aug"))
             return "8";
@@ -90,23 +90,23 @@ public class MenuPresenter {
     }
 
     private String getDayValue(String date){
-        if(date.contains("01"))
+        if(date.endsWith(" 1"))
             return "1";
-        else if(date.contains("02"))
+        else if(date.endsWith(" 2"))
             return "2";
-        else if(date.contains("03"))
+        else if(date.endsWith(" 3"))
             return "3";
-        else if(date.contains("04"))
+        else if(date.endsWith(" 4"))
             return "4";
-        else if(date.contains("05"))
+        else if(date.endsWith(" 5"))
             return "5";
-        else if(date.contains("06"))
+        else if(date.endsWith(" 6"))
             return "6";
-        else if(date.contains("07"))
+        else if(date.endsWith(" 7"))
             return "7";
-        else if(date.contains("08"))
+        else if(date.endsWith(" 8"))
             return "8";
-        else if(date.contains("09"))
+        else if(date.endsWith(" 9"))
             return "9";
         else if(date.contains("10"))
             return "10";
